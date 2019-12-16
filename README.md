@@ -1,2 +1,0 @@
-# MomentJSReactTest
-Created with CodeSandbox
