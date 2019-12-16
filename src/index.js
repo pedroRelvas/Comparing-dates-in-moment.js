@@ -4,23 +4,29 @@ import moment from "moment";
 import "./styles.css";
 
 function App() {
-  let now = moment();
-  const numbers = [
-    "2010-10-20",
-    "2015-10-20",
-    "2016-10-20",
-    "2015-10-22",
-    "2019-10-20"
-  ];
-  const listItems = numbers.map(number => (
-    <li key={number.toString()}>
-      {number}
-      {now}
-      {number.isAfter(now) ? console.log("hey") : console.log("ai")}
-    </li>
-  ));
+  let now = moment().format("MM-DD-YYYY");
 
-  return <p>{listItems}</p>;
+  let styles = {
+    backgroundColor: "red"
+  };
+
+  const numbers = [
+    moment("12-25-1995").format("MM-DD-YYYY"),
+    moment("12-25-1999").format("MM-DD-YYYY"),
+    moment("12-25-2043").format("MM-DD-YYYY")
+  ];
+  const listItems = numbers.map(number => {
+    return moment(number).isAfter(now) ? (
+      <li key={number.toString()}>{number}</li>
+    ) : (
+      <li style={styles} key={number.toString()}>
+        {number}
+      </li>
+    );
+  });
+  console.log(now);
+  console.log({ listItems });
+  return <>{listItems}</>;
 }
 
 const rootElement = document.getElementById("root");
